@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/text-styles.css">
+</head>
+<body>
+    <div class="grid-container">
+        <div class="logo">
+            <img src="/static/Logo.png" alt="Логотип">
+        </div>
+        <div class="image-container">
+            <img src="/static/Picture.png" alt="Картинка">
+        </div>
+        <div class="page-links">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+            </ul>
+        </div>
+        <div class="text-content" style="text-align: justify;">
+            <form method="post" action="/">
+                <label for="team_url">Введите URL команды:</label>
+                <input type="text" id="team_url" name="team_url" required>
+                <button type="submit">Отправить</button>
+            </form>
+
+            <!-- Блок для вывода результатов -->
+            {% if results %}
+                <h2>Результаты:</h2>
+                <ul>
+                    {% for result in results %}
+                        <li>{{ result }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
