@@ -27,6 +27,31 @@
         <div class="text-content" style="text-align: justify;">
             <h2>{{hello}}</h2>
             <p>На странице формы поиска ты можешь запросить результаты матчей текущего сезона 2023/2024 любой команды Российской Премьер-лиги на латинице в формате: CSKA.</p>
+
+            <table>
+                <tr>
+                    <th>Позиция</th>
+                    <th>Клуб</th>
+                    <th>Игры</th>
+                    <th>Победы</th>
+                    <th>Ничьи</th>
+                    <th>Поражения</th>
+                    <th>Забито</th>
+                    <th>Очки</th>
+                </tr>
+                {% for row in tournament_table %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>{{ row[5] }}</td>
+                        <td>{{ row[6] }}</td>
+                        <td>{{ row[7] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 </body>
