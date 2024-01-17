@@ -52,6 +52,30 @@
                     </tr>
                 {% endfor %}
             </table>
+
+            <h3>Игроки</h3>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя игрока</th>
+                    <th>Дата рождения</th>
+                    <th>Игры</th>
+                    <th>Голы</th>
+                    <th>Национальность</th>
+                    <th>Клуб</th>
+                </tr>
+                {% for player in football_players %}
+                    <tr>
+                        <td>{{ player.id }}</td>
+                        <td>{{ player.player_name }}</td>
+                        <td>{{ player.birth_date }}</td>
+                        <td>{{ player.games }}</td>
+                        <td>{{ player.goals }}</td>
+                        <td>{{ player.nationality }}</td>
+                        <td>{{ player.team.club }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 </body>
