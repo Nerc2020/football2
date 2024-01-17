@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from bs4 import BeautifulSoup
 import requests
+import sqlite3
+from model import session, FootballPlayer
 
 app = Flask(__name__)
 
@@ -34,11 +36,31 @@ def parse_team_results(team_url):
 
     return results
 
+# Новая функция для получения данных из базы данных
+def get_tournament_table():
+    conn = sqlite3.connect('football.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM tournament_table')
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
+
+def get_football_players():
+    players = session.query(FootballPlayer).all()
+    return players
+
 # Обработчик для главной страницы
 @app.route('/', methods=['GET'])
 def index():
     hello = 'Добро пожаловать на главную страницу!'
-    return render_template('index.html', hello=hello)
+
+    # Получаем данные из базы данных
+    tournament_table = get_tournament_table()
+
+    # Получаем данные из базы данных для таблицы FootballPlayer
+    football_players = get_football_players()
+
+    return render_template('index.html', hello=hello, tournament_table=tournament_table, football_players=football_players)
 
 # Обработчик для страницы формы
 @app.route('/form', methods=['GET', 'POST'])
